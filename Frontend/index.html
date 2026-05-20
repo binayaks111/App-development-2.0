@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-top">
+            <h1>TASK<span>/</span>MGR</h1>
+            <span class="date-tag" id="dateTag"></span>
+        </div>
+    </header>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-section">
+        <div class="progress-header">
+            <span class="progress-label">Completion</span>
+            <span class="progress-count">
+                <span id="doneCount">0</span> of
+                <span id="totalCount">0</span> tasks done
+            </span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+    </div>
+
+    <!-- INPUT CARD -->
+    <div class="input-card">
+        <div class="input-row">
+            <input type="text" id="taskInput" placeholder="Add a new task..." />
+            <button class="add-btn" id="addBtn">+ ADD</button>
+        </div>
+        <div class="input-extras">
+            <select id="prioritySelect">
+                <option value="medium">⬤ Medium Priority</option>
+                <option value="high">⬤ High Priority</option>
+                <option value="low">⬤ Low Priority</option>
+            </select>
+            <input type="date" id="dueDateInput" />
+        </div>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterTasks('all', this)">All</button>
+        <button class="filter-btn" onclick="filterTasks('pending', this)">Pending</button>
+        <button class="filter-btn" onclick="filterTasks('completed', this)">Done</button>
+        <button class="filter-btn" onclick="filterTasks('high', this)">High</button>
+        <button class="filter-btn" onclick="filterTasks('medium', this)">Med</button>
+        <button class="filter-btn" onclick="filterTasks('low', this)">Low</button>
+    </div>
+
+    <!-- TASK LIST -->
+    <ul id="taskList"></ul>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
