@@ -2,15 +2,14 @@ const API = "http://127.0.0.1:5000/tasks";
 let allTasks = [];
 let currentFilter = "all";
 
-// Set today's date in header
 document.getElementById("dateTag").textContent = new Date().toLocaleDateString('en-US', {
     weekday: 'short', month: 'short', day: 'numeric'
 }).toUpperCase();
 
-// Set today as default due date
+
 document.getElementById("dueDateInput").value = new Date().toISOString().split("T")[0];
 
-// ===== LOAD TASKS =====
+
 async function loadTasks() {
     try {
         const res = await fetch(API);
@@ -22,7 +21,7 @@ async function loadTasks() {
     }
 }
 
-// ===== UPDATE PROGRESS BAR =====
+
 function updateProgress() {
     const total = allTasks.length;
     const done = allTasks.filter(t => t.status === "completed").length;
@@ -32,7 +31,7 @@ function updateProgress() {
     document.getElementById("totalCount").textContent = total;
 }
 
-// ===== DISPLAY TASKS =====
+
 function displayTasks() {
     const list = document.getElementById("taskList");
     list.innerHTML = "";
@@ -61,7 +60,7 @@ function displayTasks() {
         const dueDateStr = task.due_date
             ? new Date(task.due_date).toLocaleDateString('en-US', {
                 month: 'short', day: 'numeric'
-              })
+            })
             : "";
 
         li.innerHTML = `
@@ -91,7 +90,7 @@ function displayTasks() {
     });
 }
 
-// ===== ADD TASK =====
+
 async function addTask() {
     const input = document.getElementById("taskInput");
     const title = input.value.trim();
@@ -121,7 +120,7 @@ async function addTask() {
     }
 }
 
-// ===== TOGGLE STATUS =====
+
 async function toggleTask(id, currentStatus) {
     const newStatus = currentStatus === "pending" ? "completed" : "pending";
     try {
@@ -136,7 +135,7 @@ async function toggleTask(id, currentStatus) {
     }
 }
 
-// ===== DELETE WITH ANIMATION =====
+
 async function removeTask(id, btn) {
     const li = btn.closest("li");
     li.classList.add("removing");
@@ -150,7 +149,7 @@ async function removeTask(id, btn) {
     }, 280);
 }
 
-// ===== FILTER =====
+
 function filterTasks(filter, btn) {
     currentFilter = filter;
     document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
@@ -158,12 +157,12 @@ function filterTasks(filter, btn) {
     displayTasks();
 }
 
-// ===== ENTER KEY =====
+
 document.getElementById("taskInput").addEventListener("keypress", e => {
     if (e.key === "Enter") addTask();
 });
 
 document.getElementById("addBtn").addEventListener("click", addTask);
 
-// ===== START =====
+
 loadTasks();

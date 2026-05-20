@@ -10,7 +10,6 @@
 <body>
 <div class="container">
 
-    <!-- HEADER -->
     <header>
         <div class="header-top">
             <h1>TASK<span>/</span>MGR</h1>
@@ -18,7 +17,6 @@
         </div>
     </header>
 
-    <!-- PROGRESS BAR -->
     <div class="progress-section">
         <div class="progress-header">
             <span class="progress-label">Completion</span>
@@ -32,7 +30,6 @@
         </div>
     </div>
 
-    <!-- INPUT CARD -->
     <div class="input-card">
         <div class="input-row">
             <input type="text" id="taskInput" placeholder="Add a new task..." />
@@ -48,7 +45,7 @@
         </div>
     </div>
 
-    <!-- FILTERS -->
+    
     <div class="filters">
         <button class="filter-btn active" onclick="filterTasks('all', this)">All</button>
         <button class="filter-btn" onclick="filterTasks('pending', this)">Pending</button>
@@ -58,7 +55,7 @@
         <button class="filter-btn" onclick="filterTasks('low', this)">Low</button>
     </div>
 
-    <!-- TASK LIST -->
+    
     <ul id="taskList"></ul>
 
 </div>
