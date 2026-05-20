@@ -6,11 +6,11 @@ app = Flask(__name__)
 CORS(app)
 
 
-# ===== GET ALL TASKS & ADD TASK =====
+
 @app.route('/tasks', methods=['GET', 'POST'])
 def handle_tasks():
 
-    # ADD A NEW TASK
+
     if request.method == 'POST':
         try:
             data = request.json
@@ -34,7 +34,7 @@ def handle_tasks():
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
-    # GET ALL TASKS
+
     if request.method == 'GET':
         try:
             conn = get_connection()
@@ -43,7 +43,7 @@ def handle_tasks():
             tasks = cursor.fetchall()
             conn.close()
 
-            # Convert date objects to strings for JSON
+            
             for task in tasks:
                 if task.get('due_date'):
                     task['due_date'] = str(task['due_date'])
@@ -56,7 +56,7 @@ def handle_tasks():
             return jsonify({"error": str(e)}), 500
 
 
-# ===== UPDATE TASK STATUS =====
+
 @app.route('/tasks/<int:task_id>', methods=['PUT'])
 def update_task(task_id):
     try:
@@ -80,7 +80,7 @@ def update_task(task_id):
         return jsonify({"error": str(e)}), 500
 
 
-# ===== DELETE TASK =====
+
 @app.route('/tasks/<int:task_id>', methods=['DELETE'])
 def delete_task(task_id):
     try:
